@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Player</title>
+  <style>
+    /* Pixel art font */
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: white;
+      font-family: 'Press Start 2P', cursive;
+      color: black;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin: 10px 0;
+    }
+
+    .timer {
+      font-size: 2rem;
+      margin: 20px 0;
+    }
+
+    .tickets {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.2rem;
+    }
+
+    .tickets input {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1rem;
+      padding: 5px;
+      width: 100px;
+      text-align: center;
+      border: 2px solid black;
+      background-color: white;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome Player</h1>
+    <p>Waiting for more players...</p>
+    <div class="timer" id="timer">24:00:00</div>
+  </div>
+
+  <div class="tickets">
+    <label for="tickets">Tickets:</label>
+    <input type="text" id="tickets" name="tickets" readonly>
+  </div>
+
+  <script>
+    // Set the timer to 24 hours
+    let timeInSeconds = 24 * 60 * 60;
+
+    // Function to update the timer
+    function updateTimer() {
+      const hours = Math.floor(timeInSeconds / 3600);
+      const minutes = Math.floor((timeInSeconds % 3600) / 60);
+      const seconds = timeInSeconds % 60;
+
+      // Format the time as HH:MM:SS
+      const formattedTime = 
+        String(hours).padStart(2, '0') + ':' +
+        String(minutes).padStart(2, '0') + ':' +
+        String(seconds).padStart(2, '0');
+
+      // Update the timer display
+      document.getElementById('timer').textContent = formattedTime;
+
+      // Decrease the time by 1 second
+      timeInSeconds--;
+
+      // Stop the timer when it reaches 0
+      if (timeInSeconds < 0) {
+        clearInterval(timerInterval);
+        document.getElementById('timer').textContent = '00:00:00';
+      }
+    }
+
+    // Update the timer every second
+    const timerInterval = setInterval(updateTimer, 1000);
+
+    // Initialize the timer display
+    updateTimer();
+  </script>
+</body>
+</html>
