@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earn Tickets</title>
+  <style>
+    /* Pixel art font */
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: white; /* Plain white background */
+      font-family: 'Press Start 2P', cursive;
+      color: black; /* Black text */
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 20px 0;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 10px 0;
+    }
+
+    .earn-ticket-button {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1rem;
+      padding: 10px 20px;
+      background-color: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .earn-ticket-button:hover {
+      background-color: #555; /* Darker gray on hover */
+    }
+
+    .back-button {
+      margin-top: 20px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.8rem;
+      padding: 10px 20px;
+      background-color: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      background-color: #555; /* Darker gray on hover */
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Earn Tickets</h1>
+    <p>Click the button below to earn 1 ticket.</p>
+    <!-- Button to earn tickets -->
+    <button class="earn-ticket-button" onclick="earnTicket()">Earn Ticket</button>
+    <!-- Back button to return to the main page -->
+    <button class="back-button" onclick="window.location.href='index.html'">Back to Main</button>
+  </div>
+
+  <script>
+    // Function to earn a ticket
+    function earnTicket() {
+      // Get the current ticket count from local storage
+      let ticketCount = localStorage.getItem('ticketCount');
+      ticketCount = ticketCount ? parseInt(ticketCount, 10) : 0;
+
+      // Increment the ticket count
+      ticketCount += 1;
+
+      // Save the updated ticket count to local storage
+      localStorage.setItem('ticketCount', ticketCount);
+
+      // Notify the user
+      alert(`You earned 1 ticket! Total tickets: ${ticketCount}`);
+    }
+  </script>
+</body>
+</html>
