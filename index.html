@@ -21,15 +21,10 @@
       text-align: center;
     }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
     h1 {
       font-size: 2.5rem;
       margin: 0;
+      animation: float 3s ease-in-out infinite;
     }
 
     p {
@@ -43,6 +38,7 @@
       cursor: pointer;
       color: black; /* Black text */
       text-decoration: underline;
+      transition: color 0.3s ease;
     }
 
     .info-link:hover {
@@ -68,22 +64,33 @@
       left: 20px;
       font-family: 'Press Start 2P', cursive;
       font-size: 0.8rem;
-      padding: 5px 10px;
+      padding: 10px 20px;
       background-color: black;
       color: white;
       border: none;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     .ticket-button:hover {
-      background-color: #555;
+      background-color: #555; /* Darker gray on hover */
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div>
     <h1>Welcome Player</h1>
-    <p>Waiting for more players...</p>
+    <p>Waiting for players...</p>
     <div class="info-link" onclick="window.location.href='info.html'">information about the mission</div>
   </div>
 
@@ -98,23 +105,30 @@
   <script>
     // Function to get the ticket count from local storage
     function getTicketCount() {
-      // Retrieve the ticket count from local storage
       const ticketCount = localStorage.getItem('ticketCount');
-      // If it exists, return it as a number; otherwise, return 0
       return ticketCount ? parseInt(ticketCount, 10) : 0;
     }
 
-    // Function to update the ticket count in local storage and on the page
-    function updateTicketCount(newCount) {
-      // Save the new ticket count to local storage
-      localStorage.setItem('ticketCount', newCount);
-      // Update the ticket count displayed on the page
-      document.getElementById('ticket-count').textContent = newCount;
+    // Function to update the ticket count display
+    function updateTicketCountDisplay() {
+      const ticketCount = getTicketCount();
+      document.getElementById('ticket-count').textContent = ticketCount;
     }
 
-    // Initialize the ticket count when the page loads
-    const initialTicketCount = getTicketCount();
-    updateTicketCount(initialTicketCount);
+    // Initialize the ticket count display when the page loads
+    updateTicketCountDisplay();
   </script>
+
+  <!-- Embedded script -->
+  <script type="text/javascript">
+    atOptions = {
+      'key' : '72730ca540c7d77df77483087e3b6f66',
+      'format' : 'iframe',
+      'height' : 250,
+      'width' : 300,
+      'params' : {}
+    };
+  </script>
+  <script type="text/javascript" src="//www.highperformanceformat.com/72730ca540c7d77df77483087e3b6f66/invoke.js"></script>
 </body>
 </html>
