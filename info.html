@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission Information</title>
+  <style>
+    /* Pixel art font */
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: white; /* White background */
+      font-family: 'Press Start 2P', cursive;
+      color: black; /* Black text */
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 600px;
+      padding: 20px;
+      border: 4px solid black; /* Pixel art border */
+      background-color: #f0f0f0; /* Light gray background */
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 20px 0;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 10px 0;
+    }
+
+    .back-button {
+      margin-top: 20px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.8rem;
+      padding: 10px 20px;
+      background-color: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      background-color: #555; /* Darker gray on hover */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Mission Information</h1>
+    <p>
+      Welcome, Agent. Your next mission is critical to the success of our operation. 
+      You will be infiltrating a high-security facility to retrieve classified documents. 
+      The mission will require stealth, precision, and quick thinking.
+    </p>
+    <p>
+      <strong>Location:</strong> Underground Facility, Sector 7<br>
+      <strong>Objective:</strong> Retrieve the classified documents<br>
+      <strong>Time Limit:</strong> 24 hours<br>
+      <strong>Difficulty:</strong> Extreme
+    </p>
+    <p>
+      Be prepared for unexpected challenges. Good luck, Agent.
+    </p>
+    <!-- Back button to return to the main page -->
+    <button class="back-button" onclick="window.location.href='index.html'">Back to Main</button>
+  </div>
+</body>
+</html>

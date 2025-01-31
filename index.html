@@ -15,9 +15,9 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: white;
+      background-color: white; /* White background */
       font-family: 'Press Start 2P', cursive;
-      color: black;
+      color: black; /* Black text */
       text-align: center;
     }
 
@@ -37,9 +37,16 @@
       margin: 10px 0;
     }
 
-    .timer {
-      font-size: 2rem;
-      margin: 20px 0;
+    .info-link {
+      font-size: 1rem;
+      margin-top: 10px;
+      cursor: pointer;
+      color: black; /* Black text */
+      text-decoration: underline;
+    }
+
+    .info-link:hover {
+      color: #555; /* Darker gray on hover */
     }
 
     .tickets {
@@ -47,66 +54,67 @@
       top: 20px;
       right: 20px;
       font-size: 1.2rem;
+      text-align: right;
     }
 
-    .tickets input {
+    .tickets span {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .ticket-button {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
       font-family: 'Press Start 2P', cursive;
-      font-size: 1rem;
-      padding: 5px;
-      width: 100px;
-      text-align: center;
-      border: 2px solid black;
-      background-color: white;
-      color: black;
+      font-size: 0.8rem;
+      padding: 5px 10px;
+      background-color: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .ticket-button:hover {
+      background-color: #555;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Welcome Player</h1>
-    <p>Waiting for more players...</p>
-    <div class="timer" id="timer">24:00:00</div>
+    <p>Waiting for players...</p>
+    <div class="info-link" onclick="window.location.href='info.html'">information about the mission</div>
   </div>
 
+  <!-- Tickets counter -->
   <div class="tickets">
-    <label for="tickets">Tickets:</label>
-    <input type="text" id="tickets" name="tickets" readonly>
+    Tickets: <span id="ticket-count">0</span>
   </div>
+
+  <!-- Ticket button to redirect to tickets.html -->
+  <button class="ticket-button" onclick="window.location.href='tickets.html'">Ticket</button>
 
   <script>
-    // Set the timer to 24 hours
-    let timeInSeconds = 24 * 60 * 60;
-
-    // Function to update the timer
-    function updateTimer() {
-      const hours = Math.floor(timeInSeconds / 3600);
-      const minutes = Math.floor((timeInSeconds % 3600) / 60);
-      const seconds = timeInSeconds % 60;
-
-      // Format the time as HH:MM:SS
-      const formattedTime = 
-        String(hours).padStart(2, '0') + ':' +
-        String(minutes).padStart(2, '0') + ':' +
-        String(seconds).padStart(2, '0');
-
-      // Update the timer display
-      document.getElementById('timer').textContent = formattedTime;
-
-      // Decrease the time by 1 second
-      timeInSeconds--;
-
-      // Stop the timer when it reaches 0
-      if (timeInSeconds < 0) {
-        clearInterval(timerInterval);
-        document.getElementById('timer').textContent = '00:00:00';
-      }
+    // Function to get the ticket count from local storage
+    function getTicketCount() {
+      // Retrieve the ticket count from local storage
+      const ticketCount = localStorage.getItem('ticketCount');
+      // If it exists, return it as a number; otherwise, return 0
+      return ticketCount ? parseInt(ticketCount, 10) : 0;
     }
 
-    // Update the timer every second
-    const timerInterval = setInterval(updateTimer, 1000);
+    // Function to update the ticket count in local storage and on the page
+    function updateTicketCount(newCount) {
+      // Save the new ticket count to local storage
+      localStorage.setItem('ticketCount', newCount);
+      // Update the ticket count displayed on the page
+      document.getElementById('ticket-count').textContent = newCount;
+    }
 
-    // Initialize the timer display
-    updateTimer();
+    // Initialize the ticket count when the page loads
+    const initialTicketCount = getTicketCount();
+    updateTicketCount(initialTicketCount);
   </script>
 </body>
 </html>
